@@ -81,13 +81,12 @@
 
     <GenerateFileFromTemplate
       TemplateFile="$(MSBuildThisFileDirectory)..\TestInfrastructure\Directory.Build.targets.in"
-      Properties="Configuration=$(Configuration);
-          RestoreAdditionalProjectSources=$([MSBuild]::Escape('$(RestoreAdditionalProjectSources);$(ArtifactsShippingPackagesDir);$(ArtifactsNonShippingPackagesDir)'))"
+      Properties="RestoreAdditionalProjectSources=$([MSBuild]::Escape('$(RestoreAdditionalProjectSources);$(ArtifactsShippingPackagesDir);$(ArtifactsNonShippingPackagesDir)'))"
       OutputPath="$(TestTemplateCreationFolder)Directory.Build.targets" />
 
     <GenerateFileFromTemplate
       TemplateFile="$(MSBuildThisFileDirectory)..\TestInfrastructure\Directory.Build.props.in"
-      Properties="RepoRoot=$(RepoRoot);ArtifactsBinDir=$(ArtifactsBinDir)"
+      Properties="Configuration=$(Configuration);RepoRoot=$(RepoRoot);ArtifactsBinDir=$(ArtifactsBinDir)"
       OutputPath="$(TestTemplateCreationFolder)Directory.Build.props" />
 
     <!-- Workaround https://github.com/dotnet/core-setup/issues/6420 - there is no MSBuild setting for rollforward yet -->
